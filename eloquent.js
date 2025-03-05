@@ -606,3 +606,7 @@ console.log(reverseArrayInPlace(bundle))
 console.log(bundle)
 ///////////////////////////////////////////////////
 //chatgpt exercise 
+///////////////////////////////////////////////
+let words = ["apple","banana","cherry"];
+words.reverse();
+console.log(words);
