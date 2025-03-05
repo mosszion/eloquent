@@ -618,10 +618,10 @@ console.log(words);
 function deepEqual (obj1,obj2) {
   if(typeof obj1 == typeof obj2) {
     let Argu = typeof obj1
-    console.log(Argu)
+   
     if(Argu == 'number') {
       //////if value type is number
-      console.log('number');
+      
       if (obj1 == obj2) {
         return "Equal numbers"
       } else {
@@ -645,6 +645,9 @@ function deepEqual (obj1,obj2) {
       if (obj1.length != undefined) {
 
         if(obj1.length == obj2.length) {
+          if (obj1.length == 0 ) {
+            return "Equal but they are empty arrays"
+          }
           for (let i = 0; i < obj1.length ; i++) {
             if(obj1[i] == obj2[i]) {
               return "Arrays are Equal"
@@ -655,11 +658,21 @@ function deepEqual (obj1,obj2) {
       } else {
         // by this point we know both arguments are objects
         // first check the properties names
-        const keys1 = Object.keys(obj1);
-        const keys2 = Object.keys(obj2);
+        if ( obj1 != null && obj2 != null) {
+
+          const keys1 = Object.keys(obj1);
+          const keys2 = Object.keys(obj2);
+        } else {
+          return "Not equal , Null couldn't be compaired"
+        }
+
+        
         
         // now check if key values are equal keys1 == keys 2
         if(keys1.length == keys2.length) {
+          if(keys1.length == 0) {
+            return "Equal but empty Objects"
+          }
           for (let i = 0 ; i < keys1.length ; i++) {
             if (keys1[i] == keys2[i]) {
               console.log(`${keys1[i]} and ${keys2[i]}`)
@@ -680,6 +693,6 @@ function deepEqual (obj1,obj2) {
     }
   }
 }
+let n = 5
 
-
-console.log(deepEqual({a : 1},{ a : 1}))
+console.log(deepEqual(n,n))
