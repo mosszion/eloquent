@@ -610,3 +610,52 @@ console.log(bundle)
 let words = ["apple","banana","cherry"];
 words.reverse();
 console.log(words);
+
+/////////////////////////////////////////////////////
+// Deep comparison exercise
+////////////////////////////////////////////////////
+
+function deepEqual (obj1,obj2) {
+  if(typeof obj1 == typeof obj2) {
+    let Argu = typeof obj1
+    console.log(typeof Argu)
+    if(Argu == 'number') {
+      //////if value type is number
+      console.log('number');
+      if (obj1 == obj2) {
+        return "Equal numbers"
+      } else {
+        return "Not Equal numbers"
+      }
+
+    } else if (Argu == 'string') { 
+       //////if value type is string
+      console.log('string')
+      if(obj1.length == obj2.length) {
+        for (let i = 0; i < obj1.length ; i++) {
+          if(obj1[i] == obj2[i]) {
+            return "Both strings are Equal"
+          }
+          else { return "Both strings are not Equal"}
+        }
+      }else {return "Not Equal Strings"}
+      }
+
+    } else if (Argu == 'array') {
+      /// if value type is array
+      console.log('array')
+      // if(obj1.length == obj2.length) {
+      //   for (let i = 0; i < obj1.length ; i++) {
+      //     if(obj1[i] == obj2[i]) {
+      //       return "Arrays are Equal"
+      //     }
+      //     else { return "Arrays are not Equal"}
+      //   }
+      // }else {return "Not Equal Arrays"}
+
+    } else if (Argu == 'object' ) {
+      console.log('object')
+    }
+  }
+
+console.log(deepEqual([1,2],[2,3]))
