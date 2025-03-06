@@ -827,3 +827,31 @@ myMother.cook = function (food) {
   return "My mother cooks " + food
 }
 console.log(myMother.cook("pata"))
+
+/////////////////////////////////////////////////////////////
+////////////Classes /////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+class Cars {
+  constructor(model, year, color) {
+    this.model = model;
+    this.year = year;
+    this.color = color;
+     }
+     age() {
+      const date = new Date();
+      return date.getFullYear() - this.year
+     }
+}
+
+mCar = new Cars("BMW", 2010, "Yellow");
+sCar = new Cars("LandRover", 1993, "Green");
+hCar = new Cars("Toyota", 2003, "Red");
+
+console.log(mCar.age());
+console.log(sCar.age());
+console.log(hCar.age());
+
+let yObj = new class {getWord() {return "hello"}}
+
+console.log(yObj.getWord());
