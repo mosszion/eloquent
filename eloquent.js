@@ -727,3 +727,103 @@ function normalize() {
 }
 
 /////////////////////////////////////////////////////////////////
+let empty = {
+};
+
+console.log(empty.toString);
+console.log(empty.toString());
+
+console.log(Object.getPrototypeOf({}) == Object.prototype)
+console.log(Object.getPrototypeOf(Object.prototype) )
+
+/////////////////////////////////////////////////////////
+
+let protoRabbit = {
+  speak(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`)
+  }
+
+}
+
+let killerRabbit = Object.create(protoRabbit)
+/////////////////////////////////////////////////////////////
+
+const person = {
+  firstName : "John",
+  lastName: "Doe",
+  age:50, eyeColor: "blue"
+}
+
+const myArray = Object.values(person)
+console.log(myArray);
+
+const m = person ;
+
+m.age = 10;
+console.log(person);
+console.log(m.age);
+
+delete person.lastName;
+console.log(person);
+
+///////////////////////////////////////////////////////////////////
+//////////////////Nested Objects////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+myObj = {
+  name: "John",
+  lastName : "Zeratsion",
+  age:30,
+  myCars : {
+    car1 : "Ford",
+    car2 : "BMW",
+    car3 : "Fiat"
+  },
+  fullName : function() {
+    return `The full-name is ${this.name} ${this.lastName}`
+  }
+}
+
+let p1 = "myCars"
+let p2 = "car2"
+
+console.log(myObj.myCars.car2);
+console.log(myObj.fullName());
+console.log(myObj);
+console.log(myObj.myCars["car2"]);
+console.log(myObj["myCars"]["car2"]);
+console.log(myObj[p1][p2])
+
+//////////////////////////////////////////////////////////////
+//////////Object Constructor Functions////////////////////////
+//////////////////////////////////////////////////////////////
+
+function Person(first, last, age, eye) {
+  this.first = first;
+  this.last = last;
+  this.age = age;
+  this.eye = eye;
+  this.language = "Tigriyna";
+  this.fullName = function() {
+    return this.first + " " + this.last 
+  }
+}
+Person.prototype.nationality = "Eritrean"
+
+const myFather = new Person("Daniel", "Woldegebriel", 64, "black");
+const myMother = new Person("Letekidan", "Woldai", 58, "brown");
+const myBrother = new Person("Simon", "Zeration", 28, "black");
+const mySister = new Person("Lia", "Zeratsion", 22, "brown");
+const mySelf = new Person("Mussie", "Zerastion", 35, "black")
+
+console.log(mySelf.first + mySelf.last);
+console.log(myMother.first +" "+ myMother.last);
+console.log("My mother speaks", myMother.language)
+console.log("My father is", myFather.nationality)
+console.log("My sister is", mySister.nationality)
+console.log("My brother full name is", myBrother.fullName())
+
+myMother.cook = function (food) {
+  return "My mother cooks " + food
+}
+console.log(myMother.cook("pata"))
