@@ -696,3 +696,14 @@ function deepEqual (obj1,obj2) {
 let n = 5
 
 console.log(deepEqual(n,n))
+
+///////////////////////////////////////////////////////////////////
+//// methods example 
+
+let rabbit = {}
+
+rabbit.speak = function(line) {
+  console.log(`The rabbit says '${line}'`)
+}
+
+rabbit.speak("I'm alive.")
