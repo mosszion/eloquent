@@ -1,0 +1,25 @@
+{
+  "name": "eloquent",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mosszion/eloquent#readme",
+  "bugs": {
+    "url": "https://github.com/mosszion/eloquent/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosszion/eloquent.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "eloquent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "ini": "^5.0.0",
+    "ordinal": "^1.0.3"
+  }
+}
