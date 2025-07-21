@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapes exercise</title>
+</head>
+<body>
+
+    <h1>Shapes Exercise</h1>
+    <p>This page is designed to help you practice drawing shapes using canvas.</p>
+    <p>Use the canvas element below to draw shapes as per the instructions provided.</p>        
+    <div id = "trapeziod">
+        <canvas width="320" height="60"></canvas>
+    </div>
+    <div id="square">
+        <canvas width="400" height="400"></canvas>
+    </div>
+    <div id="zigzag">
+        <canvas width="400" height="400"></canvas>
+    </div>
+    <div id="spiral">
+        <canvas width="400" height="400"></canvas>
+    </div>
+    <div id="yellow-star">
+        <canvas width="400" height="400"></canvas>
+    </div>
+    <script>
+        /////Drawing a trapezoid/////
+        let trapeziod = document.querySelector("#trapeziod canvas").getContext("2d");
+        trapeziod.beginPath();
+        trapeziod.moveTo(10, 50);
+        trapeziod.lineTo(50, 10);
+        trapeziod.lineTo(270, 10);
+        trapeziod.lineTo(310, 50);
+        trapeziod.closePath();
+        trapeziod.stroke();
+
+        /////Drawing a square/////
+        let square = document.querySelector("#square canvas").getContext("2d")
+        square.beginPath();
+        square.moveTo(60, 60);
+        square.lineTo(120, 10);
+        square.lineTo(180, 60);
+        square.lineTo(120, 110);
+        square.closePath();
+        square.fillStyle = "red";
+        square.fill();
+
+
+        /////Drawing a zigzag line/////
+        let zigzag = document.querySelector("#zigzag canvas").getContext("2d");
+        zigzag.beginPath();
+        for( let y = 10; y < 100; y += 20) {
+          zigzag.moveTo(10, y);
+          zigzag.lineTo(100, y + 10);
+          zigzag.lineTo(10, y + 20);
+        }
+     
+        zigzag.stroke();
+
+
+        /// Drawing a sprial made up of 100 straight lines
+        let spiral = document.querySelector("#spiral canvas").getContext("2d");
+        spiral.beginPath();
+        let centerX = 200, centerY = 200;
+        let angle = 0;
+        let radius = 0;
+        let segments = 100;
+        let angleStep = 0.2; // radians
+        let radiusStep = 2;
+
+        spiral.moveTo(centerX, centerY);
+
+        for (let i = 0; i < segments; i++) {
+            angle += angleStep;
+            radius += radiusStep;
+            let x = centerX + Math.cos(angle) * radius;
+            let y = centerY + Math.sin(angle) * radius;
+            spiral.lineTo(x, y);
+        }
+
+     
+        spiral.stroke();
+
+        /////Drawing a yellow star/////
+let star = document.querySelector("#yellow-star canvas").getContext("2d");
+let cx = 200, cy = 200; // Center of canvas
+let spikes = 10;
+let outerRadius = 100;
+let innerRadius = 70;
+let arcRadius = 50; // Radius for the rounded corners
+
+star.beginPath();
+for (let i = 0; i < spikes * 2; i++) {
+    let angle = Math.PI / spikes * i - Math.PI / 2;
+    let radius = i % 2 === 0 ? outerRadius : innerRadius;
+    let x = cx + Math.cos(angle) * radius;
+    let y = cy + Math.sin(angle) * radius;
+
+    if (i === 0) {
+        star.moveTo(x, y);
+    } else if (i % 2 === 1) {
+        // Draw an arc at each inner point
+        let prevAngle = Math.PI / spikes * (i - 1) - Math.PI / 2;
+        let prevX = cx + Math.cos(prevAngle) * outerRadius;
+        let prevY = cy + Math.sin(prevAngle) * outerRadius;
+        star.arc(x, y, arcRadius, prevAngle, angle, false);
+    } else {
+        star.lineTo(x, y);
+    }
+}
+star.closePath();
+star.fillStyle = "yellow";
+star.strokeStyle = "orange";
+star.lineWidth = 3;
+star.fill();
+star.stroke();
+
+    </script>
+   
+    
+</body>
+</html>

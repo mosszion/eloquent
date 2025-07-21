@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Coordinate System Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        .demo-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .coordinate-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        svg {
+            border: 2px solid #333;
+            margin: 10px 0;
+        }
+        
+        .grid-line {
+            stroke: #ccc;
+            stroke-width: 1;
+            opacity: 0.5;
+        }
+        
+        .axis-line {
+            stroke: #666;
+            stroke-width: 2;
+        }
+        
+        .label {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            fill: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG Coordinate System Explained</h1>
+    
+    <div class="demo-section">
+        <h2>Original Example with Coordinates Explained</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+            <!-- Grid lines for reference -->
+            <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e0e0e0" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- Coordinate axes -->
+            <line x1="0" y1="0" x2="300" y2="0" class="axis-line"/>
+            <line x1="0" y1="0" x2="0" y2="200" class="axis-line"/>
+            
+            <!-- Your original circle -->
+            <circle cx="50" cy="50" r="40" fill="red" fill-opacity="0.7" stroke="darkred" stroke-width="2"/>
+            
+            <!-- Your original rectangle -->
+            <rect x="100" y="20" width="80" height="80" stroke="blue" stroke-width="2" fill="yellow" fill-opacity="0.7"/>
+            
+            <!-- Coordinate labels -->
+            <text x="50" y="15" class="label" text-anchor="middle">Circle Center (50, 50)</text>
+            <text x="50" y="105" class="label" text-anchor="middle">↑ Radius: 40px</text>
+            
+            <text x="140" y="15" class="label" text-anchor="middle">Rect (100, 20)</text>
+            <text x="140" y="110" class="label" text-anchor="middle">80×80 px</text>
+            
+            <!-- Origin marker -->
+            <circle cx="0" cy="0" r="3" fill="black"/>
+            <text x="5" y="15" class="label">Origin (0,0)</text>
+        </svg>
+        
+        <div class="coordinate-info">
+            <strong>Circle:</strong> cx="50" cy="50" r="40"<br>
+            • Center point is at (50, 50)<br>
+            • Extends from (10, 10) to (90, 90)<br><br>
+            
+            <strong>Rectangle:</strong> x="100" y="20" width="80" height="80"<br>
+            • Top-left corner starts at (100, 20)<br>
+            • Bottom-right corner ends at (180, 100)
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>SVG Coordinate System Rules</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
+            <!-- Background -->
+            <rect width="100%" height="100%" fill="#f9f9f9"/>
+            
+            <!-- Grid -->
+            <defs>
+                <pattern id="detailedGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#ddd" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#detailedGrid)" />
+            
+            <!-- Major axes -->
+            <line x1="0" y1="0" x2="400" y2="0" stroke="red" stroke-width="3"/>
+            <line x1="0" y1="0" x2="0" y2="300" stroke="red" stroke-width="3"/>
+            
+            <!-- Coordinate markers every 50px -->
+            <g class="label">
+                <text x="50" y="-5">50</text>
+                <text x="100" y="-5">100</text>
+                <text x="150" y="-5">150</text>
+                <text x="200" y="-5">200</text>
+                <text x="250" y="-5">250</text>
+                <text x="300" y="-5">300</text>
+                <text x="350" y="-5">350</text>
+                
+                <text x="-10" y="50">50</text>
+                <text x="-10" y="100">100</text>
+                <text x="-10" y="150">150</text>
+                <text x="-10" y="200">200</text>
+                <text x="-10" y="250">250</text>
+            </g>
+            
+            <!-- Example shapes with labels -->
+            <circle cx="100" cy="100" r="20" fill="blue" fill-opacity="0.5"/>
+            <text x="100" y="140" class="label" text-anchor="middle">(100, 100)</text>
+            
+            <rect x="200" y="150" width="60" height="40" fill="green" fill-opacity="0.5"/>
+            <text x="230" y="210" class="label" text-anchor="middle">(200, 150)</text>
+            
+            <polygon points="300,50 350,100 250,100" fill="orange" fill-opacity="0.5"/>
+            <text x="300" y="120" class="label" text-anchor="middle">Triangle</text>
+            
+            <!-- Origin -->
+            <circle cx="0" cy="0" r="5" fill="red"/>
+            <text x="10" y="20" class="label" font-weight="bold">Origin (0,0)</text>
+        </svg>
+        
+        <div class="coordinate-info">
+            <strong>Key Points:</strong><br>
+            • Origin (0,0) is at TOP-LEFT corner<br>
+            • X increases going RIGHT →<br>
+            • Y increases going DOWN ↓ (opposite of math!)<br>
+            • All measurements are in pixels by default
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Interactive Coordinate Demo</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" id="interactiveSVG" style="cursor: crosshair;">
+            <rect width="100%" height="100%" fill="#f5f5f5"/>
+            
+            <!-- Grid -->
+            <defs>
+                <pattern id="interactiveGrid" width="25" height="25" patternUnits="userSpaceOnUse">
+                    <path d="M 25 0 L 0 0 0 25" fill="none" stroke="#e0e0e0" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#interactiveGrid)" />
+            
+            <!-- Moveable circle -->
+            <circle id="moveableCircle" cx="200" cy="150" r="15" fill="red" style="cursor: move;"/>
+            
+            <!-- Coordinate display -->
+            <text id="coordDisplay" x="10" y="20" class="label" font-size="16" font-weight="bold">
+                Click and drag the red circle!
+            </text>
+        </svg>
+        
+        <div class="coordinate-info">
+            <strong>Try it:</strong> Click and drag the red circle to see how coordinates change in real-time!
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Shape-Specific Coordinate Properties</h2>
+        
+        <h3>Circle</h3>
+        <div class="coordinate-info">
+            &lt;circle cx="50" cy="50" r="40" /&gt;<br>
+            • <strong>cx, cy:</strong> Center coordinates<br>
+            • <strong>r:</strong> Radius from center<br>
+            • Actual bounds: (cx-r, cy-r) to (cx+r, cy+r)
+        </div>
+        
+        <h3>Rectangle</h3>
+        <div class="coordinate-info">
+            &lt;rect x="100" y="20" width="80" height="80" /&gt;<br>
+            • <strong>x, y:</strong> Top-left corner coordinates<br>
+            • <strong>width, height:</strong> Size from that corner<br>
+            • Bottom-right corner: (x+width, y+height)
+        </div>
+        
+        <h3>Other Common Shapes</h3>
+        <div class="coordinate-info">
+            <strong>Line:</strong> &lt;line x1="0" y1="0" x2="100" y2="50" /&gt;<br>
+            • (x1,y1) = start point, (x2,y2) = end point<br><br>
+            
+            <strong>Polygon:</strong> &lt;polygon points="0,0 50,0 25,50" /&gt;<br>
+            • Each pair of numbers is an (x,y) coordinate<br><br>
+            
+            <strong>Text:</strong> &lt;text x="100" y="50"&gt;Hello&lt;/text&gt;<br>
+            • (x,y) = baseline position of the text
+        </div>
+    </div>
+
+    <script>
+        // Make the circle draggable
+        const circle = document.getElementById('moveableCircle');
+        const coordDisplay = document.getElementById('coordDisplay');
+        const svg = document.getElementById('interactiveSVG');
+        
+        let isDragging = false;
+        
+        function updateCoordinateDisplay(x, y) {
+            coordDisplay.textContent = `Circle center: (${Math.round(x)}, ${Math.round(y)})`;
+        }
+        
+        circle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        svg.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const rect = svg.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Keep circle within bounds
+                const boundedX = Math.max(15, Math.min(385, x));
+                const boundedY = Math.max(15, Math.min(285, y));
+                
+                circle.setAttribute('cx', boundedX);
+                circle.setAttribute('cy', boundedY);
+                
+                updateCoordinateDisplay(boundedX, boundedY);
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        // Initialize display
+        updateCoordinateDisplay(200, 150);
+    </script>
+</body>
+</html>
