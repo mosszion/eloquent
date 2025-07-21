@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "ini": "^5.0.0",
+    "mime": "^2.2.0",
     "ordinal": "^1.0.3"
   }
 }
